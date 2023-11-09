@@ -4,7 +4,7 @@ import Discover from "../components/Discover";
 import CategeoryList from "../components/Categeory";
 import Categeory from "../data/fake";
 import Testimonial from "../components/Testimonial";
-import Foooter from "../components/Foooter";
+// import Foooter from "../components/Foooter";
 function Home() {
   return (
     <div>

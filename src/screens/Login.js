@@ -3,10 +3,10 @@ import "../styles/Login.css";
 import logo from "../images/logo1.png";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
-import Footer from "../components/Foooter";
+// import Footer from "../components/Foooter";
 import { Link } from "react-router-dom";
 import User from "../data/User";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +38,7 @@ function Login() {
       <div className="login">
         <div className="login-box">
           <div className="logo text-center">
-            <img src={logo} />
+            <img src={logo} alt="img" />
           </div>
           <div className="heading">
             <h2>Login</h2>

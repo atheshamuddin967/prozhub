@@ -3,7 +3,7 @@ import "../styles/Explore.css";
 import Categeory from "../data/fake";
 import { Link } from "react-router-dom";
 function Explore() {
-  const subcat = Categeory.map((item) => item.subcat);
+  // const subcat = Categeory.map((item) => item.subcat);
   //   const name = subcat.map((item) => item.title);
   //   console.log(subcat.title);
   return (
