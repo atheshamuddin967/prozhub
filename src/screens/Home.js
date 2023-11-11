@@ -18,10 +18,10 @@ function Home() {
           bg={Categeory.bg}
         />
       ))}
+
       <div className="testim-box space">
         <Testimonial />
       </div>
-      {/* <Foooter /> */}
     </div>
   );
 }

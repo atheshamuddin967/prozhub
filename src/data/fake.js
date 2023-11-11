@@ -40,7 +40,100 @@ const Categeory = [
     id: 1,
     bg: House,
     subcat: [
-      { img: gardening, title: "Gardening", id: 0 },
+      {
+        img: gardening,
+        title: "Gardening",
+        id: 0,
+        step1: [
+          {
+            heading: "Home & Garden",
+            question: [
+              {
+                type: "radio",
+                name: "why",
+                id: "1",
+                label: "lorem ismp dollor how",
+              },
+              {
+                type: "radio",
+                name: "why",
+                id: "2",
+                label: "how to manage",
+              },
+              {
+                type: "radio",
+                name: "why",
+                id: "3",
+                label: "whre do u fn us",
+              },
+              {
+                type: "radio",
+                name: "why",
+                id: "4",
+                label: "why us ",
+              },
+            ],
+          },
+          {
+            heading: " Garden",
+            question: [
+              {
+                type: "checkbox",
+                name: "whdj",
+                id: "whys",
+                label: "why us dkdjh",
+              },
+              {
+                type: "checkbox",
+                name: "whdjd",
+                id: "whyo",
+                label: "why us dkhfahd ",
+              },
+              {
+                type: "checkbox",
+                name: "whdkkc;",
+                id: "whykl",
+                label: "why us fhfLDJk ",
+              },
+              {
+                type: "checkbox",
+                name: "whk;k;ckcj",
+                id: "kdjd",
+                label: "why us oofffjjfkshfshfuf ",
+              },
+            ],
+          },
+          {
+            heading: "Home",
+            question: [
+              {
+                type: "checkbox",
+                name: "whjd",
+                id: "whkdy",
+                label: "why us oofffjjfkshfshfuf ",
+              },
+              {
+                type: "checkbox",
+                name: "whs",
+                id: "whsy",
+                label: "fjjfkshfshfuf ",
+              },
+              {
+                type: "checkbox",
+                name: "who",
+                id: "whdlky",
+                label: "fjjfkshfshfuf ",
+              },
+              {
+                type: "checkbox",
+                name: "whs",
+                id: "whddkly",
+                label: "why us oofffjjfkshfshfuf dgdug ",
+              },
+            ],
+          },
+        ],
+      },
       { img: cleaning, title: "House cleaning", id: 0 },
       { img: Painting, title: "Painting And decorartion", id: 0 },
       { img: comercial, title: "Commercial office cleaning", id: 0 },
