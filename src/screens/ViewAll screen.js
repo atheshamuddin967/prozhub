@@ -4,14 +4,18 @@ import InputField from "../components/InputField";
 import Button from "../components/Button";
 import Cards from "../components/Cards";
 import "../styles/Home.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Categeory from "../data/fake";
-import MiniList from "../components/MiniList";
-function ViewAll() {
+
+// import queryString from 'query-string';
+
+function ViewAll({ item }) {
   const { title, bg } = useParams();
   const decodedTitle = decodeURIComponent(title);
   const decodedBg = decodeURIComponent(bg);
+  const navigate = useNavigate();
+
 
   const findSubcatByTitle = () => {
     const category = Categeory.find((cat) => cat.title === title);
@@ -25,17 +29,7 @@ function ViewAll() {
 
   const titleToFind = { decodedTitle };
   const subcatArray = findSubcatByTitle(titleToFind);
-  const findAllcatByTitle = () => {
-    const category = Categeory.find((cat) => cat.title === title);
 
-    if (category) {
-      return category.all;
-    }
-
-    return [];
-  };
-  const allcatArray = findAllcatByTitle(titleToFind);
-  console.log(allcatArray);
   return (
     <div>
       <div className="views">
@@ -89,9 +83,11 @@ function ViewAll() {
         </div>
         <div className="row">
           {subcatArray.map((item) => (
-            <div className="col-sm-4">
+            <div className="col-sm-4" key={item.id}>
               <div className="item-box">
-                <Link to="/">
+                <Link
+                  to={ `/componentScreen/${encodeURIComponent(item)}`}state={{itemdata:item}}>
+                  {console.log(item.title)}
                   <img src={item.img} alt="images" />
                 </Link>
                 <h5>{item.title}</h5>
@@ -111,9 +107,9 @@ function ViewAll() {
         <div className="row">
           <div className="col-sm-12">
             <div className="headings">
-              {allcatArray.map((item) => (
-                <MiniList title={item.title} data={allcatArray} />
-              ))}
+              {/* {allcatArray.map((item) => (
+                <MiniList title={item.title} data={allcatArray} /> */}
+              
             </div>
           </div>
         </div>

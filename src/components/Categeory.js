@@ -34,7 +34,7 @@ function CategeoryList({ title, sub, bg }) {
                 bg
               )}`}
             >
-              View All
+              View All 
             </Link>{" "}
           </div>
         </div>
