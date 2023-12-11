@@ -3,7 +3,7 @@ import React from "react";
 function Step({ id, heading, image, item }) {
   return (
     <div>
-      <img src={image} alt="image" />
+      <img src={image} alt="i" />
       <div className="questions-details">
         <h5>{heading}</h5>
         {item?.map((item) => (

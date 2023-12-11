@@ -4,11 +4,12 @@ import InputField from "../components/InputField";
 import Button from "../components/Button";
 import Cards from "../components/Cards";
 import "../styles/Home.css";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
+
+import { useParams, useNavigate } from "react-router-dom";
 import Categeory from "../data/fake";
 import MiniList from "../components/MiniList";
 function ViewAll() {
+  const navigate = useNavigate();
   const { title, bg } = useParams();
   const decodedTitle = decodeURIComponent(title);
   const decodedBg = decodeURIComponent(bg);
@@ -35,7 +36,13 @@ function ViewAll() {
     return [];
   };
   const allcatArray = findAllcatByTitle(titleToFind);
-  console.log(allcatArray);
+
+  const go = (item) => {
+    console.log("Item data:", item);
+    navigate("/Service", { state: { item } });
+    console.log(item);
+  };
+
   return (
     <div>
       <div className="views">
@@ -90,10 +97,10 @@ function ViewAll() {
         <div className="row">
           {subcatArray.map((item) => (
             <div className="col-sm-4">
-              <div className="item-box">
-                <Link to="/">
-                  <img src={item.img} alt="images" />
-                </Link>
+              <div className="item-box" onClick={() => go(item)}>
+                {/* <Link to={{ pathname: "/Service", state: { item } }}> */}
+                <img src={item.img} alt="images" />
+                {/* </Link> */}
                 <h5>{item.title}</h5>
               </div>
             </div>
