@@ -12,6 +12,7 @@ import Carousle from "../components/Owlcaroule";
 function ServiceDetail() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [emailModal, setemailModal] = useState(false);
   const openModal = (item) => {
     setIsModalOpen(true);
     setSelectedItem(item);
@@ -22,7 +23,21 @@ function ServiceDetail() {
     setSelectedItem(null);
   };
   useEffect(() => {}, [selectedItem]);
+  const [currentStep, setCurrentStep] = useState(0);
 
+  // Function to handle the "Next" button click
+  const handleNextClick = () => {
+    // If it's the last step, open the email modal
+    if (currentStep === selectedItem?.step1.length - 1) {
+      setemailModal(true);
+      setIsModalOpen(false);
+      console.log(currentStep);
+    } else {
+      // Increment the current step
+      setCurrentStep((prevStep) => prevStep + 1);
+      console.log(currentStep);
+    }
+  };
   const location = useLocation();
   const { item } = location.state || {};
   console.log(item);
@@ -83,6 +98,7 @@ function ServiceDetail() {
                   <MultiStep
                     nextButton={{
                       title: "Next",
+                      onClick: handleNextClick,
                       style: {
                         background: "#3062d9",
                         border: "0px",
@@ -104,11 +120,8 @@ function ServiceDetail() {
                       },
                     }}
                   >
-                    {selectedItem?.step1?.map((step1) => (
+                    {selectedItem?.step1?.map((step1, index) => (
                       <Step
-                        // name={"abcd"}
-                        // id={"abcd"}
-                        // type={"radio"}
                         image={item.img}
                         showNavigation={false}
                         showTitles={false}
@@ -117,13 +130,58 @@ function ServiceDetail() {
                       />
                     ))}
                   </MultiStep>
+                  <button onClick={handleNextClick}>x</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       )}
-
+      {emailModal && (
+        <div className="modals">
+          <div className="modal-box">
+            <div className="inner-modal">
+              <div className="close-btn" onClick={closeModal}>
+                <i class="fa-solid fa-xmark"></i>
+              </div>
+            </div>
+            <div className="modals-header">
+              <div className="modals-detail">
+                <div className="userdetail">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    id="email"
+                    name="email"
+                  />
+                </div>
+                <div className="userdetail">
+                  <label htmlFor="location">Location</label>
+                  <input
+                    type="text"
+                    placeholder="Enter your zipcode"
+                    id="location"
+                    name="location"
+                  />
+                </div>
+                <div className="userdetail">
+                  <label htmlFor="phone">Phone no</label>
+                  <input
+                    type="number"
+                    placeholder="212*******"
+                    id="nnumber"
+                    name="number"
+                  />
+                </div>
+                <div className="userdetail">
+                  <button>Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <Cards title={item.title} />
 
       <div class="linkbtn text-center space">

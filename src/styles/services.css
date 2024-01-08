@@ -56,3 +56,23 @@
   border-radius: 100%;
   border: 0;
 }
+.userdetail {
+  margin: 10px 0;
+  padding: 0 20px;
+}
+.userdetail input {
+  width: 100%;
+  border-radius: 5px;
+  border: 2px solid rgb(224, 212, 212);
+  background-color: transparent;
+  padding: 5px 10px;
+  margin: 5px 0;
+}
+.userdetail button {
+  width: 100%;
+  padding: 10px 0;
+  color: white;
+  background-color: #3062d9;
+  border: 0;
+  border-radius: 5px;
+}
