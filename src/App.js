@@ -11,8 +11,12 @@ import Explore from "./screens/Explore";
 import ViewAll from "./screens/ViewAll screen";
 import Foooter from "./components/Foooter";
 import ServiceDetail from "./screens/ServiceDetail";
+import Forms from "./components/Forms";
 
 function App() {
+  // return(
+  //   <Forms/>
+  // )
   return (
     <div>
       <Router>

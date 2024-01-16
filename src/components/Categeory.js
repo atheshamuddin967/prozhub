@@ -4,21 +4,37 @@ import { Link } from "react-router-dom";
 import house from "../images/house.jpg";
 import MultiStep from "react-multistep";
 import Step from "./Step";
+import Forms from "./Forms";
 function CategeoryList({ title, sub, bg }) {
   const subToDisplay = sub.slice(0, 3);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [count, setCount] = useState(0);
   const openModal = (item) => {
     setIsModalOpen(true);
     setSelectedItem(item);
   };
 
   const closeModal = () => {
+    setCount(0);
     setIsModalOpen(false);
+
     setSelectedItem(null);
   };
-  useEffect(() => {}, [selectedItem]);
+  const handlePrev = () => {
+    if (count > 0) {
+      setCount(count - 1);
+    }
+  };
+  const handleNext = () => {
+    if (count <= selectedItem.step1.length - 1) {
+      setCount(count + 1);
+    } else {
+      console.log("No new question");
+    }
+  };
 
+  useEffect(() => {}, [selectedItem]);
   return (
     <div className="container">
       <div className="row space">
@@ -60,9 +76,11 @@ function CategeoryList({ title, sub, bg }) {
                 <i class="fa-solid fa-xmark"></i>
               </div>
               <div className="modals-header">
-                <div className="modals-detail">
-                  <MultiStep
+                {count <= selectedItem.step1.length - 1 ? (
+                  <div className="modals-detail">
+                    {/* <MultiStep
                     nextButton={{
+                      
                       title: "Next",
                       style: {
                         background: "#3062d9",
@@ -73,6 +91,7 @@ function CategeoryList({ title, sub, bg }) {
                         margin: 10,
                       },
                     }}
+                    
                     prevButton={{
                       title: "Back",
                       style: {
@@ -97,18 +116,37 @@ function CategeoryList({ title, sub, bg }) {
                         heading={step1.heading}
                       />
                     ))}
-                  </MultiStep>
-                </div>
+                  </MultiStep> */}
+                    <div>
+                      <Step
+                        name={"abcd"}
+                        id={"abcd"}
+                        type={"radio"}
+                        image={house}
+                        showNavigation={false}
+                        showTitles={false}
+                        item={selectedItem?.step1[count].question}
+                        heading={selectedItem?.step1[count].heading}
+                      />
+                    </div>
+                    <div className="p-2 d-flex  gap-2 ">
+                      <button className="btn btn-primary" onClick={handlePrev}>
+                        Prev
+                      </button>
+                      <button className="btn btn-primary" onClick={handleNext}>
+                        Next
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="py-4 px-2">
+                    <Forms
+                      setcountt={setCount}
+                      setIsModalClose={setIsModalOpen}
+                    />
+                  </div>
+                )}
               </div>
-              {/* <div className="modals-btns">
-                <div className="back-btn">
-                  <button className="back">back</button>
-                </div>
-
-                <div className="next-btn">
-                  <button className="next">Next</button>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
