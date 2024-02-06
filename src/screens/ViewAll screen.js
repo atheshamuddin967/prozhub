@@ -91,7 +91,7 @@ function ViewAll() {
           {subcatArray.map((item) => (
             <div className="col-sm-4">
               <div className="item-box">
-                <Link to="/">
+                <Link to="Service">
                   <img src={item.img} alt="images" />
                 </Link>
                 <h5>{item.title}</h5>
