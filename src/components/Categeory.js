@@ -44,9 +44,9 @@ function CategeoryList({ title, sub, bg }) {
         {subToDisplay.map((item) => (
           <div className="col-sm-4">
             <div className="item-box" onClick={() => openModal(item)}>
-              <Link to="/">
-                <img src={item.img} alt="images" />
-              </Link>
+              {/* <Link to=""> */}
+              <img src={item.img} alt="images" />
+              {/* </Link> */}
               <h5>{item.title}</h5>
             </div>
           </div>
