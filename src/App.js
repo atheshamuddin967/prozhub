@@ -12,11 +12,20 @@ import ViewAll from "./screens/ViewAll screen";
 import Foooter from "./components/Foooter";
 import ServiceDetail from "./screens/ServiceDetail";
 import Forms from "./components/Forms";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import {fetchProzHubApi} from "./features/Slicers/Slicer"
 function App() {
+  const dispatch = useDispatch()
+  const state = useSelector((state)=>state.Slicer)
+  console.log(state)
+
   // return(
   //   <Forms/>
   // )
+  useEffect(()=>{
+    dispatch(fetchProzHubApi())
+  },[])
   return (
     <div>
       <Router>
