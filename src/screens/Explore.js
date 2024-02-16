@@ -7,7 +7,7 @@ function Explore() {
   //   const name = subcat.map((item) => item.title);
   //   console.log(subcat.title);
   return (
-    <div className="explore ">
+    <div  className="explore ">
       <div className="container">
         <div div className="row space">
           <div className="col-sm-12">

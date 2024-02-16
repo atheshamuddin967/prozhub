@@ -34,6 +34,7 @@ input[type="password"],
   padding: 5px 10px;
   margin: 5px 0;
 }
+
 .login label {
   font-size: 14px;
   font-weight: 600;
@@ -74,4 +75,13 @@ input[type="checkbox"] {
 }
 .forget a:hover {
   color: black;
+}
+
+#text, #Number{
+  width: 100%;
+  border-radius: 5px;
+  border: 2px solid rgb(224, 212, 212);
+
+  padding: 5px 10px;
+  margin: 5px 0;
 }

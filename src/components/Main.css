@@ -175,10 +175,38 @@ li a {
   top: -5%;
   left: -5%;
 }
+.suggestion-list {
+  background-color: white;
+  width: 500px;
+}
 .suggestion-list li {
   /* color: #fff; */
   list-style: none;
+  border-bottom: 1px solid gray;
+  padding: 10px 5px;
+  color: rgb(34, 32, 32);
+}
+.suggestion-list li:last-child {
+  border-bottom: none; /* Remove bottom border from the last li element */
 }
 .flex-box {
   display: inline-flex;
+}
+
+.MyModal {
+  margin-top: 80px;
+  z-index: 2000px;
+}
+
+.loading {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100vh;
+  z-index: 110000000001 !important;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  left: 0;
+  top: 0;
 }

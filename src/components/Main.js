@@ -1,12 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Main.css";
 import Categeory from "../data/fake";
+import {
+  HandleShowModal,
+  SerchServiceApi,
+} from "../features/Slicers/SearchSeviceSlicer";
+import { useSelector, useDispatch } from "react-redux";
+import Services from "../screens/Services";
+import RequestServiceModal from "./RequestServiceModal";
+import { GetQuestionsApi } from "../features/Slicers/GetQuestionnaireSlicer";
+import SendNewRequest from "./SendNewRequest";
+
 function Main() {
+  const dispatch = useDispatch();
+  const { getService } = useSelector((state) => state.SearchSeviceSlicer);
+  const { getAllServices } = useSelector((state) => state.Slicer);
+  const [isInputFocused, setIsInputFocused] = useState(false);
+  // console.log(getService);
+  const [SearchedService, setSearcedService] = useState([])
+
   const [searchInput, setSearchInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const handleSearchInputChange = (e) => {
     const input = e.target.value;
     setSearchInput(input);
+    dispatch(SerchServiceApi(input));
 
     // Filter category and subcategory titles based on the first letter of the input
     const filteredSuggestions = Categeory.filter((category) =>
@@ -15,14 +33,23 @@ function Main() {
 
     setSuggestions(filteredSuggestions);
   };
-
-  const handleSuggestionClick = (suggestion) => {
-    setSearchInput(suggestion);
-    setSuggestions([]); // Clear the suggestion list when a suggestion is selected
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
   };
 
+  const handleSuggestionClick = (suggestion) => {
+    console.log(suggestion);
+    setSearchInput('');
+    dispatch(GetQuestionsApi(suggestion?._id))
+
+    dispatch(HandleShowModal(suggestion));
+  };
+
+  useEffect(()=>{
+    setSearcedService(getService)
+  },[])
   return (
-    <div className="">
+    <>
       <div className="main">
         <div className="detail">
           <h1>Find the perfect professional for you</h1>
@@ -34,10 +61,11 @@ function Main() {
                 <div className="search-box p">
                   <div className="box">
                     <input
-                      type="search"
+                      type="text"
                       placeholder="What service are you looking for?"
-                      className="serch"
+                      className="text"
                       value={searchInput}
+                      onFocus={handleInputFocus}
                       onChange={handleSearchInputChange}
                     />
                   </div>
@@ -56,22 +84,38 @@ function Main() {
               </div>
             </div>
           </div>
-          {suggestions.length > 0 && (
-            <ul className="suggestion-list">
-              {suggestions.map((suggestion, index) => (
-                <li
-                  key={index}
-                  onClick={() => handleSuggestionClick(suggestion)}
-                >
-                  {suggestion}
-                </li>
-              ))}
+
+          {isInputFocused && !searchInput == "" && (
+            <ul className="suggestion-list rounded border border-white">
+              {
+               getService && getService?.map((suggestion, index) => {
+                  // console.log(suggestion)
+                  return (
+                    <li
+                      style={{ cursor: "pointer" }}
+                      key={suggestion?._id}
+                      onClick={() => handleSuggestionClick(suggestion)}
+                    >
+                      {suggestion?.serviceName}
+                    </li>
+                  );
+                })}
             </ul>
           )}
+          <div className="modalReq">
+            <RequestServiceModal />
+          </div>
+                  <div>
+
+      <SendNewRequest/>
+                  </div>
           <p>Popular: House Cleaning, Web Design, Personal Trainers</p>
         </div>
       </div>
-    </div>
+
+      {/* {getService && <Services />} */}
+
+    </>
   );
 }
 

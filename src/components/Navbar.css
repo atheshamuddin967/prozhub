@@ -4,7 +4,6 @@
 nav {
   box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 1px 0px;
   background-color: #ffff;
-  /* background-color: rgba(48, 98, 217, 0.01); */
 }
 .navbar {
   --bs-navbar-padding-x: 0;
@@ -14,4 +13,24 @@ nav {
   font-family: "Poppins" !important;
   font-size: 18px !important;
   font-weight: 600 !important;
+  color: black !important;
+}
+
+.nav-item {
+  color: black;
+}
+
+.navdrop .dropdown-toggle::after {
+  display: none !important;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+  border-top: 0em solid !important;
+  border-right: 0em solid transparent !important;
+}
+
+.dropimg {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
 }

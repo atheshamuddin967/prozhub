@@ -13,8 +13,11 @@ function Testimonial() {
       </div>
 
       <Marquee>
-        {review.map((item) => (
+        {review.map((item,index) => (
+          <span key={index}>
+
           <TestimItem item={item} />
+          </span>
         ))}
       </Marquee>
     </div>

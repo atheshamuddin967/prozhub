@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import "../styles/Home.css";
 import { Link } from "react-router-dom";
 import house from "../images/house.jpg";
-import MultiStep from "react-multistep";
 import Step from "./Step";
 import Forms from "./Forms";
-function CategeoryList({ title, sub, bg }) {
-  const subToDisplay = sub.slice(0, 3);
+import img from '../images/airport.jpg'
+function CategeoryList({ title, sub, bg ,id }) {
+  // console.log(sub)
+  // const subToDisplay = sub.slice(0, 3);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [count, setCount] = useState(0);
@@ -36,7 +37,7 @@ function CategeoryList({ title, sub, bg }) {
 
   useEffect(() => {}, [selectedItem]);
   return (
-    <div className="container">
+    <div  className="container">
       <div className="row space">
         <div className="col-sm-6">
           <div className="heading">
@@ -56,18 +57,30 @@ function CategeoryList({ title, sub, bg }) {
         </div>
       </div>
 
-      <div className="row">
+      <div onClick={()=>console.log(id)} className="row">
+        
+          <div className="col-sm-4">
+            <div className="item-box" onClick={() => openModal()} >
+              <Link to="">
+              <img src={img} alt="images" />
+              </Link>
+              <h5>{title}</h5>
+            </div>
+          </div>
+        
+      </div>
+      {/* <div className="row">
         {subToDisplay.map((item) => (
           <div className="col-sm-4">
             <div className="item-box" onClick={() => openModal(item)}>
-              {/* <Link to=""> */}
+              <Link to="">
               <img src={item.img} alt="images" />
-              {/* </Link> */}
+              </Link>
               <h5>{item.title}</h5>
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
       {isModalOpen && selectedItem && (
         <div className="modals">
           <div className="modal-box">
@@ -78,45 +91,7 @@ function CategeoryList({ title, sub, bg }) {
               <div className="modals-header">
                 {count <= selectedItem.step1.length - 1 ? (
                   <div className="modals-detail">
-                    {/* <MultiStep
-                    nextButton={{
-                      
-                      title: "Next",
-                      style: {
-                        background: "#3062d9",
-                        border: "0px",
-                        padding: "5px 20px",
-                        borderRadius: 5,
-                        color: "#ffff",
-                        margin: 10,
-                      },
-                    }}
-                    
-                    prevButton={{
-                      title: "Back",
-                      style: {
-                        background: "#ffff",
-                        border: "1px solid gray",
-                        padding: "5px 20px",
-                        borderRadius: 5,
-                        color: "black",
-                        margin: 10,
-                      },
-                    }}
-                  >
-                    {selectedItem?.step1?.map((step1) => (
-                      <Step
-                        name={"abcd"}
-                        id={"abcd"}
-                        type={"radio"}
-                        image={house}
-                        showNavigation={false}
-                        showTitles={false}
-                        item={step1.question}
-                        heading={step1.heading}
-                      />
-                    ))}
-                  </MultiStep> */}
+                  
                     <div>
                       <Step
                         name={"abcd"}
